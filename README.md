@@ -7,11 +7,11 @@ I have created this repository to display my data analysis skills. I'm currently
 In this repository I'm going to showcase some of these skills using football statistics because I think they're fun! 
 
 ## Table of Contents
-- [About](https://github.com/TSZUoE/Football-Analysis/edit/main/README.md#about)
-- [Projects](https://github.com/TSZUoE/Football-Analysis/edit/main/README.md#projects)
-  - [Project 1](https://github.com/TSZUoE/Football-Analysis/edit/main/README.md#project-1)
-  - [Project 2](https://github.com/TSZUoE/Football-Analysis/edit/main/README.md#project-2)
-  - [Project 3](https://github.com/TSZUoE/Football-Analysis/edit/main/README.md#project-3)
+- [About](#about)
+- [Projects](#projects)
+  - [Project 1](project-1)
+  - [Project 2](#project-2)
+  - [Project 3](#project-3)
 
 
 ## Projects
