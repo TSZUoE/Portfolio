@@ -1,0 +1,63 @@
+---
+title: "Analysis of Electricity Production"
+author: "Tom Smith-Zaitlik"
+date: "2026-09-29"
+output: html_document
+---
+
+
+#Load packages
+```{r eval=FALSE, include=FALSE}
+
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(stringr)
+
+```
+
+#Load Data
+```{r}
+
+E.Data <- read_excel("Data/Electricity_Data.xlsx") #Import data from Excel file
+
+```
+
+#Process Data
+```{r}
+
+E.Data.Long <- E.Data %>%
+  pivot_longer(cols =! c(Year, Total_estimated_generation), # select all columns except the year and total generation
+               names_to = "Method", #move all selected column names to a new column called method
+               values_to = "Electricity") #move all selected column values to a new column called electricity 
+
+E.Data.Long$Method <- str_replace_all(E.Data.Long$Method, "_estimated_generation", "") #remove "estimated generation" from category names
+E.Data.Long$Method <- str_replace_all(E.Data.Long$Method, "_", " ") #remove underscores from category names
+
+
+```
+
+#Display Data
+```{r}
+
+ggplot(E.Data.Long,
+       aes(x = Year, y = Electricity/1000, fill = Method)) + 
+  geom_col(colour = "black", width = 1) +
+  scale_x_continuous(breaks = seq(min(E.Data.Long$Year), max(E.Data.Long$Year), by = 10),
+                     expand = c(0,0)) +
+  scale_y_continuous(name = "Estimated Electricity Generation (Terwwatthours TWh)",
+                     limits = c(0,400),
+                     expand = c(0,0)) +
+  scale_fill_viridis_d(option = "C",
+                       name = "Source") +
+  
+  guides(x = guide_axis(minor.ticks = TRUE),
+         y = guide_axis(minor.ticks = TRUE)) +
+  theme_classic() +
+  theme(axis.title = element_text(face = "bold"),
+        legend.title = element_text(face = "bold"),
+        axis.minor.ticks.length = rel(1))
+
+
+```
